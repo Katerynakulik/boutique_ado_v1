@@ -1,0 +1,7 @@
+**/*.html
+**/templates/**
+{
+  "[html]": {
+    "editor.formatOnSave": false
+  }
+}
