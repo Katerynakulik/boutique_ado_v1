@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
-if os.path.isfile('env.py'):
+if os.path.exists("env.py"):
     import env # flake8 will throw an error here, but it is necessary to import env.py
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +29,10 @@ SECRET_KEY = 'django-insecure-5_2=dxq_3+-vsfirv9iiw+!*a6^84&-6hlrhm31r&@-1oic&bl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost'
+]
 
 
 # Application definition
@@ -66,7 +69,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'boutoque_ado.urls'
 
-CRISPY_TEPMLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -169,6 +172,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -178,6 +183,7 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
